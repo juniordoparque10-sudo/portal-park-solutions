@@ -22,6 +22,7 @@ import {
   Ticket,
   Zap
 } from 'lucide-react'
+
 import parkLogo from './assets/park-solutions-logo.png'
 import flluxoScreen from './assets/flluxo-dashboard.png'
 import painelScreen from './assets/painel-senhas.png'
@@ -29,51 +30,60 @@ import passeLivreScreen from './assets/passe-livre-dashboard.png'
 import totemScreen from './assets/totem-park-dashboard.png'
 import './App.css'
 
-const whatsappLink = 'https://wa.me/5584991246185'
+const whatsappLink =
+  'https://wa.me/5584991346016?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Park%20Solutions%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento.'
 
 const products = [
   {
     icon: MonitorPlay,
     name: 'Totem Park',
+    anchor: 'totem-park',
     title: 'Comunicação Digital Inteligente',
     label: 'TVs, totens e campanhas digitais',
     image: totemScreen,
     description:
       'Plataforma SaaS para gerenciar telas, clientes, playlists, campanhas, agendamentos e status online em tempo real.',
     bullets: ['Gestão de TVs e totens', 'Playlists e mídias', 'Agendamentos por tela', 'Painel SaaS por cliente'],
+    status: 'Em operação',
     color: 'cyan'
   },
   {
     icon: BarChart3,
     name: 'Flluxo',
+    anchor: 'flluxo',
     title: 'Gestão Empresarial Inteligente',
     label: 'Empresas, documentos e processos',
     image: flluxoScreen,
     description:
       'Sistema para organizar empresas, documentos, agenda, colaboradores, registros rápidos e prioridades operacionais.',
     bullets: ['Documentos por empresa', 'Agenda e tarefas', 'Colaboradores', 'Ranking operacional'],
+    status: 'Em evolução',
     color: 'purple'
   },
   {
     icon: QrCode,
     name: 'Passe Livre Park',
+    anchor: 'passe-livre-park',
     title: 'Credenciamento e Controle de Acesso',
     label: 'QR Code, carteiras e validação online',
     image: passeLivreScreen,
     description:
       'Sistema completo para emissão de carteiras, validação por QR Code, controle de entradas e gestão de beneficiários.',
     bullets: ['Carteiras digitais', 'Validação QR Code', 'Controle de entradas', 'Impressão e relatórios'],
+    status: 'Em operação',
     color: 'green'
   },
   {
     icon: Gauge,
     name: 'Painel de Senhas',
+    anchor: 'painel-de-senhas',
     title: 'Atendimento Inteligente',
     label: 'Filas, chamadas e TV institucional',
     image: painelScreen,
     description:
       'Solução para organizar atendimento ao público com chamada por senha, áudio, sala de atendimento e painel em TV.',
     bullets: ['Chamada em TV', 'Áudio automático', 'Sala de atendimento', 'Histórico de senhas'],
+    status: 'Em operação',
     color: 'blue'
   }
 ]
@@ -116,7 +126,6 @@ const technologies = [
   { icon: Zap, name: 'APIs', text: 'Integrações inteligentes' },
   { icon: Cpu, name: 'IA', text: 'Automação e produtividade' }
 ]
-
 
 const whyChoose = [
   {
@@ -196,10 +205,10 @@ function App() {
               Software house para empresas e órgãos públicos
             </div>
 
-            <h1>Desenvolvemos tecnologia para empresas que querem crescer.</h1>
+            <h1>Transformamos ideias em sistemas que geram resultado.</h1>
 
             <p>
-              Sistemas, aplicativos e plataformas criados para automatizar processos, aumentar produtividade e modernizar operações com visual profissional.
+              Software house especializada em plataformas SaaS, sistemas corporativos, automação de processos e soluções digitais para empresas e órgãos públicos.
             </p>
 
             <div className="hero-actions">
@@ -274,7 +283,7 @@ function App() {
           {products.map((product) => {
             const Icon = product.icon
             return (
-              <a href={`#${product.name.toLowerCase().replaceAll(' ', '-')}`} className={`solution-pill ${product.color}`} key={product.name}>
+              <a href={`#${product.anchor}`} className={`solution-pill ${product.color}`} key={product.name}>
                 <Icon size={19} />
                 <div>
                   <strong>{product.title}</strong>
@@ -298,7 +307,7 @@ function App() {
             {products.map((product, index) => {
               const Icon = product.icon
               return (
-                <article id={product.name.toLowerCase().replaceAll(' ', '-')} className={`product-row ${product.color} ${index % 2 ? 'reverse' : ''}`} key={product.name}>
+                <article id={product.anchor} className={`product-row ${product.color} ${index % 2 ? 'reverse' : ''}`} key={product.name}>
                   <div className="product-screen">
                     <img src={product.image} alt={`Tela do sistema ${product.name}`} />
                   </div>
@@ -323,6 +332,42 @@ function App() {
 
                     <a href={whatsappLink} target="_blank" rel="noreferrer">
                       Solicitar solução semelhante
+                      <ArrowRight size={16} />
+                    </a>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+        </section>
+
+        <section className="section wrap cases-section" id="cases">
+          <div className="section-heading center">
+            <span>Cases em operação</span>
+            <h2>Produtos reais, interfaces reais e soluções prontas para evoluir.</h2>
+            <p>
+              Cada sistema foi criado para atender uma necessidade prática, com foco em operação, controle e apresentação profissional.
+            </p>
+          </div>
+
+          <div className="cases-grid">
+            {products.map((product) => {
+              const Icon = product.icon
+              return (
+                <article className={`case-card ${product.color}`} key={product.name}>
+                  <div className="case-image">
+                    <img src={product.image} alt={`Case ${product.name}`} />
+                  </div>
+                  <div className="case-content">
+                    <div className="case-meta">
+                      <span>{product.status}</span>
+                      <Icon size={21} />
+                    </div>
+                    <h3>{product.name}</h3>
+                    <strong>{product.title}</strong>
+                    <p>{product.description}</p>
+                    <a href={whatsappLink} target="_blank" rel="noreferrer">
+                      Quero uma solução assim
                       <ArrowRight size={16} />
                     </a>
                   </div>
@@ -400,6 +445,25 @@ function App() {
                 </article>
               )
             })}
+          </div>
+        </section>
+
+        <section className="park-numbers wrap">
+          <div>
+            <strong>4+</strong>
+            <span>Produtos próprios</span>
+          </div>
+          <div>
+            <strong>100%</strong>
+            <span>Projetos sob medida</span>
+          </div>
+          <div>
+            <strong>24h</strong>
+            <span>Sistemas online</span>
+          </div>
+          <div>
+            <strong>RN</strong>
+            <span>Atendimento regional</span>
           </div>
         </section>
 
